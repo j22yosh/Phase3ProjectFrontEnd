@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import './Components/Css/Alltask.css'
+
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import App from './App';
