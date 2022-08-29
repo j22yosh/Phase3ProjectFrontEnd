@@ -51,7 +51,7 @@ useEffect(() => {
 }, []);
 
 
-
+console.log(tasks)
   function changeHandler(e){
     
       setSubmission({
@@ -71,51 +71,51 @@ useEffect(() => {
     category_name: submission.category
    }   
 
-//Post method for users
-   fetch("http://localhost:9292/users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-       },
-       body: JSON.stringify(fullname),
-   })
-   .then((r) => r.json())
-   .then((newUser) => {setNewUser(newUser)
-   })
+// //Post method for users
+//    fetch("http://localhost:9292/users", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//        },
+//        body: JSON.stringify(fullname),
+//    })
+//    .then((r) => r.json())
+//    .then((newUser) => {setNewUser(newUser)
+//    })
    
-   console.log(newUser)
+//    console.log(newUser)
 //Post method for categories
-   fetch("http://localhost:9292/categories", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-       },
-       body: JSON.stringify(dbcategory),
-   })
-   .then((r) => r.json())
-   .then((newCategory) => {
-    setNewCategory(newCategory)
-   })
-   console.log(newCategory)
+  //  fetch("http://localhost:9292/categories", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //      },
+  //      body: JSON.stringify(dbcategory),
+  //  })
+  //  .then((r) => r.json())
+  //  .then((newCategory) => {
+  // //   setNewCategory(newCategory)
+  // //  })
+  // //  console.log(newCategory)
 
-   const dbtask = {
-    task_name: submission.name,
-    category_id: newCategory.id,
-    user_id: newUser.id
+  // //  const dbtask = {
+  // //   task_name: submission.name,
+  // //   category_id: newCategory.id,
+  // //   user_id: newUser.id
        
-  }
-  fetch("http://localhost:9292/tasks", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-       },
-       body: JSON.stringify(dbtask),
-   })
-   .then((r) => r.json())
-   .then((newTask) => {
-    setNewTask(newTask)
-   })
-   console.log(newTask)
+  // // }
+  // fetch("http://localhost:9292/tasks", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //      },
+  //      body: JSON.stringify(dbtask),
+  //  })
+  //  .then((r) => r.json())
+  //  .then((newTask) => {
+  //   setNewTask(newTask)
+  //  })
+  //  console.log(newTask)
 
 
   //  setUsers(users => [...users, newUser])
@@ -123,19 +123,19 @@ useEffect(() => {
 
 
   
-  const usersList = users.map(user =>
-    { return <div key={user.id}>
+  const taskList = tasks.map(task =>
+    { return <div key={task.id}>
       <header>
         <form className="list">
-          <input type="text" id={user.id} value={user.first_name +" "+ user.last_name}/>
-          <input type="text" value={user.tasks[0].task_name}/>
-          <input type="text" value={user.categories[0].category_name}/>
+          <input type="text" id={task.user.id} value={task.user.first_name +" "+ task.user.last_name}/>
+          <input type="text" value={task.task_name}/>
+          <input type="text" value={task.category.category_name}/>
           <span><FontAwesomeIcon className="faicons" icon={"trash"}></FontAwesomeIcon></span>
         </form>
       </header>
     </div>})
   
-  const {name, task, category } = submission
+  // const {name, task, category } = submission
   return (
     <div className="App">
       <header className="App-header"><div>
@@ -147,7 +147,7 @@ useEffect(() => {
           <button type="submit">Submit</button>
         </form>
       </header>
-    </div>{usersList}</header>
+    </div>{taskList}</header>
       
     </div>
   );
